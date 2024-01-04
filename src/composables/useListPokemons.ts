@@ -1,22 +1,26 @@
-import { useQuery } from '@tanstack/vue-query'
+import { ref } from 'vue'
 import { ListPokemons } from '../models/pokemon'
-import { Pokemons } from '../types/exercise'
+import { Pokemon } from '../types/pokemons'
 
 // eslint-disable-next-line import/prefer-default-export
 export const useListPokemons = () => {
-  const query = useQuery({
-    queryKey: ['pokemonList'],
-    queryFn: ListPokemons,
-  })
+  const pokemons = ref<Pokemon[]>([])
+  const isLoading = ref(false)
 
-  let pokemons: Pokemons = []
-
-  if (query?.data) {
-    pokemons = query.data.value?.data.results
+  const fetchData = async () => {
+    try {
+      isLoading.value = true
+      const response = await ListPokemons()
+      pokemons.value = response.data.results
+    } finally {
+      isLoading.value = false
+    }
   }
+
+  fetchData()
 
   return {
     pokemons,
-    isPending: query.isPending,
+    isLoading,
   }
 }
