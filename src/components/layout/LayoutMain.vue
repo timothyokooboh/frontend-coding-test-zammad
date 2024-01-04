@@ -10,7 +10,7 @@
             <img class="ml-3" src="../../assets/logotype.svg" />
           </div>
           <div class="flex ml-10 items-center align-middle">
-            <div class="flex space-x-4">
+            <div class="flex space-x-4 mr-3">
               <router-link
                 to="/"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"

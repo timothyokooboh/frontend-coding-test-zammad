@@ -1,5 +1,5 @@
 <template>
-  <div class="w-[90%] max-w-[800px] mx-auto text-left px-8 py-10">
+  <div class="w-[90%] max-w-[650px] mx-auto text-left px-8 py-10">
     <h2 class="mb-5 text-gray-800 text-2xl font-bold uppercase">Pokemons</h2>
     <div v-if="isLoading">Loading...</div>
 
