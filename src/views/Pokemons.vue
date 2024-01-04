@@ -5,7 +5,7 @@
 
     <section v-else>
       <div class="text-center mb-10">
-        <SearchInput v-model="keyword" placeholder="Search for pokemons" />
+        <BaseInput v-model="keyword" placeholder="Search for pokemons" />
       </div>
 
       <PokemonList v-bind:pokemons="filteredPokemons" />
@@ -21,7 +21,7 @@
 import { ref, computed } from 'vue'
 import { useListPokemons } from '../composables/useListPokemons'
 import PokemonList from '../components/pokemons/PokemonList.vue'
-import SearchInput from '../components/SearchInput.vue'
+import BaseInput from '../components/BaseInput.vue'
 
 const { isLoading, pokemons } = useListPokemons()
 
