@@ -25,18 +25,7 @@
         <span> {{ pokemonDetails.weight }} </span>
       </section>
 
-      <section class="w-full">
-        <div class="mb-3 font-bold uppercase text-[12px]">Abilities</div>
-        <div class="flex items-center flex-wrap gap-x-4 gap-y-2">
-          <div
-            v-for="ability in pokemonDetails.abilities"
-            v-bind:key="ability"
-            class="bg-gray-500 text-white px-3 py-1 rounded-md"
-          >
-            {{ ability }}
-          </div>
-        </div>
-      </section>
+      <PokemonAbilities v-bind:abilities="pokemonDetails.abilities" />
 
       <section class="w-full">
         <div class="mb-3 font-bold uppercase text-[12px]">Stats</div>
@@ -49,6 +38,7 @@
 <script setup lang="ts">
 import type { PokemonDetails } from '../../types/pokemons'
 import PokemonStats from './PokemonStats.vue'
+import PokemonAbilities from './PokemonAbilities.vue'
 
 defineProps<{
   pokemonDetails: PokemonDetails
