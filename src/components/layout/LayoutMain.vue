@@ -18,6 +18,14 @@
                 >Home</router-link
               >
             </div>
+            <div class="flex space-x-4">
+              <router-link
+                v-bind:to="{ name: 'PokemonList' }"
+                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                exact-active-class="bg-gray-900 text-white"
+                >Pokemon</router-link
+              >
+            </div>
           </div>
         </div>
       </div>

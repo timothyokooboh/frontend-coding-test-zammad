@@ -16,6 +16,11 @@ const mainRoutes: RouteRecordRaw[] = [
     props: true,
     component: Home,
   },
+  {
+    path: '/pokemon-list',
+    name: 'PokemonList',
+    component: () => import('../views/PokemonList.vue'),
+  },
 ]
 
 const routes: RouteRecordRaw[] = [
