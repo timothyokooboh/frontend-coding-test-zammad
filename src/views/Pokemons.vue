@@ -1,12 +1,22 @@
 <template>
   <div class="w-[90%] max-w-[650px] mx-auto text-left px-8 py-10">
     <h2 class="mb-5 text-gray-800 text-2xl font-bold uppercase">Pokemons</h2>
-    <div v-if="isLoading">Loading...</div>
+    <div v-if="isLoading" class="flex justify-center items-center">
+      <BaseLoader class="mt-[100px]" />
+    </div>
 
     <section v-else>
       <div class="text-center mb-10">
         <BaseInput v-model="keyword" placeholder="Search for pokemons" />
       </div>
+
+      <PokemonPagination
+        v-bind:show-previous="!!previousPageUrl"
+        v-bind:show-next="!!nextPageUrl"
+        class="mb-4"
+        v-on:handle:next="handleNext"
+        v-on:handle:previous="handlePrevious"
+      />
 
       <PokemonList v-bind:pokemons="filteredPokemons" />
 
@@ -22,8 +32,17 @@ import { ref, computed } from 'vue'
 import { useListPokemons } from '../composables/useListPokemons'
 import PokemonList from '../components/pokemons/PokemonList.vue'
 import BaseInput from '../components/BaseInput.vue'
+import PokemonPagination from '../components/pokemons/PokemonPagination.vue'
+import BaseLoader from '../components/BaseLoader.vue'
 
-const { isLoading, pokemons } = useListPokemons()
+const {
+  isLoading,
+  pokemons,
+  getNextPage,
+  getPreviousPage,
+  nextPageUrl,
+  previousPageUrl,
+} = useListPokemons()
 
 const keyword = ref('')
 const filteredPokemons = computed(() => {
@@ -31,4 +50,14 @@ const filteredPokemons = computed(() => {
     item.name.toLowerCase().includes(keyword.value.toLowerCase()),
   )
 })
+
+const handleNext = () => {
+  keyword.value = ''
+  getNextPage()
+}
+
+const handlePrevious = () => {
+  keyword.value = ''
+  getPreviousPage()
+}
 </script>
