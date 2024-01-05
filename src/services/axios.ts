@@ -30,8 +30,6 @@ http.interceptors.response.use(
       // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
       // http.ClientRequest in node.js
 
-      console.log('request')
-
       Notify({
         icon: 'error',
         title: 'There was an error fetching data. Please try again',

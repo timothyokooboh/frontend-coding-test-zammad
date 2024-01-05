@@ -2,6 +2,7 @@
   <div class="shadow-md rounded-sm py-2 px-10">
     <section class="mb-4">
       <RouterLink
+        data-testid="back-btn"
         v-bind:to="{ name: 'PokemonList' }"
         class="w-fit flex items-center text-gray-800 font-bold"
       >
@@ -11,25 +12,42 @@
     </section>
 
     <section class="flex flex-col items-center gap-y-4">
-      <h2 class="text-center text-2xl font-bold text-gray-800">
+      <h2
+        class="text-center text-2xl font-bold text-gray-800"
+        data-testid="name"
+      >
         {{ pokemonDetails.name }}
       </h2>
 
       <img
         v-bind:src="pokemonDetails.image"
         class="w-full max-w-[200px] h-[200px]"
+        alt="pokeon image"
+        data-testid="image"
       />
 
-      <section class="w-full">
+      <section class="w-full" data-testid="weight">
         <span class="font-bold uppercase text-[12px]">Weight: </span>
         <span> {{ pokemonDetails.weight }} </span>
       </section>
 
-      <PokemonAbilities v-bind:abilities="pokemonDetails.abilities" />
+      <PokemonAbilities
+        v-bind:abilities="pokemonDetails.abilities"
+        data-testid="abilities"
+      />
 
       <section class="w-full">
-        <div class="mb-3 font-bold uppercase text-[12px]">Stats</div>
-        <PokemonStats v-bind:stats="pokemonDetails.stats" />
+        <div
+          class="mb-3 font-bold uppercase text-[12px]"
+          data-testid="stats-title"
+        >
+          Stats
+        </div>
+
+        <PokemonStats
+          v-bind:stats="pokemonDetails.stats"
+          data-testid="stats-content"
+        />
       </section>
     </section>
   </div>
