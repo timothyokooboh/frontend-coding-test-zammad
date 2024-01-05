@@ -6,7 +6,7 @@ import PokemonAbilities from './PokemonAbilities.vue'
 expect.extend(toHaveNoViolations)
 
 describe('PokemonAbilities', () => {
-  let wrapper: any
+  let wrapper: Element
 
   beforeEach(() => {
     const { container } = render(PokemonAbilities, {
