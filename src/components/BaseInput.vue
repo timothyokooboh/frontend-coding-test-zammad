@@ -1,6 +1,6 @@
 <template>
   <input
-    class="border-[1px] border-gray-300 w-[90%] max-w-[300px] px-4 py-2 rounded-sm"
+    class="border-[1px] border-gray-300 w-[90%] max-w-[300px] px-4 py-2 rounded-md"
     v-on:input="handleInput"
   />
 </template>
