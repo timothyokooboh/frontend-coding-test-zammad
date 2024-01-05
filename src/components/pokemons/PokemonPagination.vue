@@ -3,6 +3,7 @@
     <button
       v-if="showPrevious"
       class="mr-4 border-[1px] border-gray-800 rounded-sm py-2 px-4 hover:bg-gray-800 hover:text-white duration-200"
+      data-testid="previous"
       v-on:click="$emit('handle:previous')"
     >
       Previous
@@ -11,6 +12,7 @@
     <button
       v-if="showNext"
       class="border-[1px] border-gray-800 rounded-sm py-2 px-4 hover:bg-gray-800 hover:text-white duration-200"
+      data-testid="next"
       v-on:click="$emit('handle:next')"
     >
       Next

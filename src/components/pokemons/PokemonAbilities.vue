@@ -1,5 +1,5 @@
 <template>
-  <section class="w-full">
+  <section class="w-full" data-testid="pokemon-abilities">
     <div class="mb-3 font-bold uppercase text-[12px]">Abilities</div>
     <div class="flex items-center flex-wrap gap-x-4 gap-y-2">
       <div

@@ -20,7 +20,6 @@ export const useListPokemons = () => {
   }
 
   const fetchData = async () => {
-    console.log('invoke')
     try {
       isLoading.value = true
       const response = await ListPokemons(nextPageUrl.value)
