@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div class="w-full" data-testid="stats">
     <div
       v-for="item in stats"
       v-bind:key="item.name"
