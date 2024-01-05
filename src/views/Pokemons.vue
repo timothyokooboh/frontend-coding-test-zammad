@@ -8,6 +8,14 @@
         <BaseInput v-model="keyword" placeholder="Search for pokemons" />
       </div>
 
+      <PokemonPagination
+        v-bind:show-previous="!!previousPageUrl"
+        v-bind:show-next="!!nextPageUrl"
+        class="mb-4"
+        v-on:handle:next="handleNext"
+        v-on:handle:previous="handlePrevious"
+      />
+
       <PokemonList v-bind:pokemons="filteredPokemons" />
 
       <div v-if="keyword && filteredPokemons.length === 0" class="text-center">
@@ -22,8 +30,16 @@ import { ref, computed } from 'vue'
 import { useListPokemons } from '../composables/useListPokemons'
 import PokemonList from '../components/pokemons/PokemonList.vue'
 import BaseInput from '../components/BaseInput.vue'
+import PokemonPagination from '../components/pokemons/PokemonPagination.vue'
 
-const { isLoading, pokemons } = useListPokemons()
+const {
+  isLoading,
+  pokemons,
+  getNextPage,
+  getPreviousPage,
+  nextPageUrl,
+  previousPageUrl,
+} = useListPokemons()
 
 const keyword = ref('')
 const filteredPokemons = computed(() => {
@@ -31,4 +47,14 @@ const filteredPokemons = computed(() => {
     item.name.toLowerCase().includes(keyword.value.toLowerCase()),
   )
 })
+
+const handleNext = () => {
+  keyword.value = ''
+  getNextPage()
+}
+
+const handlePrevious = () => {
+  keyword.value = ''
+  getPreviousPage()
+}
 </script>

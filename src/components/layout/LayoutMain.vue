@@ -13,7 +13,7 @@
             <div class="flex space-x-4 mr-3">
               <router-link
                 to="/"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-300 hover:bg-gray-700 hover:text-white duration-200 px-3 py-2 rounded-md text-sm font-medium"
                 exact-active-class="bg-gray-900 text-white"
                 >Home</router-link
               >
@@ -21,7 +21,7 @@
             <div class="flex space-x-4">
               <router-link
                 v-bind:to="{ name: 'PokemonList' }"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-300 hover:bg-gray-700 hover:text-white duration-200 px-3 py-2 rounded-md text-sm font-medium"
                 exact-active-class="bg-gray-900 text-white"
                 >Pokemon</router-link
               >

@@ -1,17 +1,52 @@
 import { ref } from 'vue'
-import { ListPokemons } from '../models/pokemon'
+import { GetNextPage, GetPreviousPage, ListPokemons } from '../models/pokemon'
 import { Pokemon } from '../types/pokemons'
 
 // eslint-disable-next-line import/prefer-default-export
 export const useListPokemons = () => {
   const pokemons = ref<Pokemon[]>([])
+  const nextPageUrl = ref('/')
+  const previousPageUrl = ref('')
   const isLoading = ref(false)
 
+  const handleResponse = (response: {
+    data: { results: Pokemon[]; next: string; previous: string }
+  }) => {
+    pokemons.value = response.data.results
+    nextPageUrl.value = response.data.next
+    previousPageUrl.value = response.data.previous
+  }
+
   const fetchData = async () => {
+    console.log('invoke')
     try {
       isLoading.value = true
-      const response = await ListPokemons()
-      pokemons.value = response.data.results
+      const response = await ListPokemons(nextPageUrl.value)
+      handleResponse(response)
+    } finally {
+      isLoading.value = false
+    }
+  }
+
+  const getNextPage = async () => {
+    if (!nextPageUrl.value) return
+
+    try {
+      isLoading.value = true
+      const response = await GetNextPage(nextPageUrl.value)
+      handleResponse(response)
+    } finally {
+      isLoading.value = false
+    }
+  }
+
+  const getPreviousPage = async () => {
+    if (!previousPageUrl.value) return
+
+    try {
+      isLoading.value = true
+      const response = await GetPreviousPage(previousPageUrl.value)
+      handleResponse(response)
     } finally {
       isLoading.value = false
     }
@@ -22,5 +57,9 @@ export const useListPokemons = () => {
   return {
     pokemons,
     isLoading,
+    getNextPage,
+    getPreviousPage,
+    nextPageUrl,
+    previousPageUrl,
   }
 }
