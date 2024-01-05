@@ -26,4 +26,14 @@ defineProps<{
 defineEmits(['handle:previous', 'handle:next'])
 </script>
 
-<style scoped></style>
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  transform: translateY(30px);
+}
+</style>

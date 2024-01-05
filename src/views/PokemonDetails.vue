@@ -2,11 +2,13 @@
   <div
     class="w-[90%] max-w-[650px] mx-auto text-left px-5 py-4 sm:px-10 sm:py-8"
   >
-    <div v-if="isLoading" class="flex justify-center items-center">
-      <BaseLoader class="mt-[100px]" />
-    </div>
+    <Transition name="fade" mode="out-in" appear>
+      <div v-if="isLoading" class="flex justify-center items-center">
+        <BaseLoader class="mt-[100px]" />
+      </div>
 
-    <PokemonListItemDetails v-else v-bind:pokemon-details="pokemonDetails" />
+      <PokemonListItemDetails v-else v-bind:pokemon-details="pokemonDetails" />
+    </Transition>
   </div>
 </template>
 
@@ -22,4 +24,14 @@ const { isLoading, pokemonDetails } = useViewPokemon(
 )
 </script>
 
-<style scoped></style>
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  transform: translateY(30px);
+}
+</style>
