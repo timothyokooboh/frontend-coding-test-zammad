@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="w-[90%] max-w-[650px] mx-auto text-left px-5 py-4 sm:px-10 sm:py-8"
-  >
+  <div class="w-[90%] max-w-[800px] mx-auto text-left py-10">
     <Transition name="fade" mode="out-in" appear>
       <div v-if="isLoading" class="flex justify-center items-center">
         <BaseLoader class="mt-[100px]" />

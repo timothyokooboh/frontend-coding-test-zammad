@@ -8,7 +8,7 @@
       <div>{{ item.name }}</div>
       <div class="flex-1 bg-gray-500 h-[20px] overflow-hidden rounded-[10px]">
         <div
-          class="bg-white h-full flex flex-col items-center justify-center text-sm rounded-[10px]"
+          class="bg-white h-full flex flex-col items-center justify-center text-sm rounded-[10px] duration-500"
           v-bind:style="{ width: item.base_stat + '%' }"
         >
           <div>{{ item.base_stat }}</div>

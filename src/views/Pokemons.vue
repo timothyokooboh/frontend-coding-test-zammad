@@ -1,18 +1,29 @@
 <template>
-  <div class="w-[90%] max-w-[650px] mx-auto text-left px-8 py-10">
-    <h2 class="mb-5 text-gray-800 text-2xl font-bold uppercase">Pokemons</h2>
+  <div class="w-[90%] max-w-[800px] mx-auto text-left pb-10 pt-5">
+    <section class="bg-blue-500 py-2 px-4 rounded-md mb-6">
+      <h2 class="mb-6 text-white text-2xl font-bold uppercase">Pokemons</h2>
 
-    <div v-if="showSearchInput" class="text-center mb-10">
-      <BaseInput v-model="keyword" placeholder="Search for pokemons" />
-    </div>
+      <div class="flex items-center flex-wrap gap-y-5 mb-6">
+        <div v-if="showSearchInput" class="relative flex-grow">
+          <span class="absolute top-[5px] left-[8px] text-xl">&#128270;</span>
+          <BaseInput
+            v-model="keyword"
+            placeholder="Search for pokemons"
+            class="pl-10"
+          />
+        </div>
+
+        <PokemonSort v-model:sorting-order="sortingOrder" />
+      </div>
+    </section>
 
     <PokemonPagination
       v-if="showPagination"
       v-bind:show-previous="!!previousPageUrl"
       v-bind:show-next="!!nextPageUrl"
-      class="mb-4"
-      v-on:handle:next="handleNext"
-      v-on:handle:previous="handlePrevious"
+      class="mb-6"
+      v-on:handle:next="getNextPage"
+      v-on:handle:previous="getPreviousPage"
     />
 
     <Transition name="fade" mode="out-in" appear>
@@ -37,12 +48,16 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useListPokemons } from '../composables/useListPokemons'
+import { useSortPokemons } from '../composables/useSortPokemons'
 import PokemonList from '../components/pokemons/PokemonList.vue'
 import BaseInput from '../components/BaseInput.vue'
 import PokemonPagination from '../components/pokemons/PokemonPagination.vue'
 import BaseLoader from '../components/BaseLoader.vue'
+import PokemonSort from '../components/pokemons/PokemonSort.vue'
+
+const { sortByName } = useSortPokemons()
 
 const {
   isLoading,
@@ -54,6 +69,7 @@ const {
 } = useListPokemons()
 
 const keyword = ref('')
+const sortingOrder = ref<'ascending' | 'descending'>('ascending')
 
 const filteredPokemons = computed(() => {
   return pokemons.value.filter((item) =>
@@ -69,15 +85,9 @@ const showPagination = computed(() => {
   return !isLoading.value && filteredPokemons.value.length > 0
 })
 
-const handleNext = () => {
-  keyword.value = ''
-  getNextPage()
-}
-
-const handlePrevious = () => {
-  keyword.value = ''
-  getPreviousPage()
-}
+watch([sortingOrder, pokemons], () => {
+  sortByName(pokemons.value, sortingOrder.value)
+})
 </script>
 
 <style scoped>
