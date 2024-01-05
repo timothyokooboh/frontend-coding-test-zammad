@@ -8,6 +8,8 @@
     "preview": "vite preview",
     "lint": "vue-tsc --noEmit && eslint -c .eslintrc.js --ext .js,.ts,.vue src/",
     "lint:fix": "npm run lint -- --fix",
+    "format:check": "prettier --check .",
+    "format:fix": "prettier --write .",
     "test": "vitest"
   },
   "dependencies": {
