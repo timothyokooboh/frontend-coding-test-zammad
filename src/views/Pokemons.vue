@@ -1,7 +1,9 @@
 <template>
   <div class="w-[90%] max-w-[650px] mx-auto text-left px-8 py-10">
     <h2 class="mb-5 text-gray-800 text-2xl font-bold uppercase">Pokemons</h2>
-    <div v-if="isLoading">Loading...</div>
+    <div v-if="isLoading" class="flex justify-center items-center">
+      <BaseLoader class="mt-[100px]" />
+    </div>
 
     <section v-else>
       <div class="text-center mb-10">
@@ -31,6 +33,7 @@ import { useListPokemons } from '../composables/useListPokemons'
 import PokemonList from '../components/pokemons/PokemonList.vue'
 import BaseInput from '../components/BaseInput.vue'
 import PokemonPagination from '../components/pokemons/PokemonPagination.vue'
+import BaseLoader from '../components/BaseLoader.vue'
 
 const {
   isLoading,
