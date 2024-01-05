@@ -1,6 +1,7 @@
 import { ref } from 'vue'
 import { ViewPokemon } from '../models/pokemon'
 import type { PokemonDetails } from '../types/pokemons'
+import { Notify } from '../helpers/toast'
 
 // eslint-disable-next-line import/prefer-default-export
 export const useViewPokemon = (name: string) => {
@@ -18,6 +19,9 @@ export const useViewPokemon = (name: string) => {
       isLoading.value = true
 
       const { data } = await ViewPokemon(name)
+
+      Notify({ icon: 'success', title: `${name} details found successfully` })
+
       pokemonDetails.value = {
         name: data.name,
         weight: data.weight,
