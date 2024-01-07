@@ -5,7 +5,10 @@
 
       <div class="flex items-center flex-wrap gap-y-5 mb-6">
         <div v-if="showSearchInput" class="relative flex-grow">
-          <span class="absolute top-[5px] left-[8px] text-xl">&#128270;</span>
+          <span
+            class="material-symbols-outlined text-gray-500 absolute top-[5px] left-[8px] text-xl"
+            >search</span
+          >
           <BaseInput
             v-model="keyword"
             placeholder="Search for pokemons"
