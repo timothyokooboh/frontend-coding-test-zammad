@@ -63,6 +63,7 @@ import PokemonSort from '../components/pokemons/PokemonSort.vue'
 const { sortByName } = useSortPokemons()
 
 const {
+  fetchData,
   isLoading,
   pokemons,
   getNextPage,
@@ -70,6 +71,8 @@ const {
   nextPageUrl,
   previousPageUrl,
 } = useListPokemons()
+
+fetchData()
 
 const keyword = ref('')
 const sortingOrder = ref<'ascending' | 'descending'>('ascending')

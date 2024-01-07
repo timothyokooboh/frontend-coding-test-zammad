@@ -54,9 +54,8 @@ export const useListPokemons = () => {
     }
   }
 
-  fetchData()
-
   return {
+    fetchData,
     pokemons,
     isLoading,
     getNextPage,
